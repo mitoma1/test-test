@@ -17,7 +17,8 @@ services:
       - ./src:/var/www/
 
   mysql:
-    image: mysql:8.0.26
+    image: mysql/mysql-server:latest
+    platform: linux/arm64
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: laravel_db
@@ -32,11 +33,11 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
-      - PMA_USER=laravel_user
-      - PMA_PASSWORD=laravel_pass
+      - PMA_ARBITRARY =1
+      - PMA_HOST = mysql
+      - PMA_USER =laravel_user
+      - PMA_PASSWORD =laravel_pass
     depends_on:
       - mysql
     ports:
-      - 8080:80
+      - "8080:80"

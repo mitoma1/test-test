@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+Route::get('/', [ContactController::class, 'index']);
+
+Route::get('/contacts', [ContactController::class, 'showForm'])->name('contacts.form');  // フォーム表示（GET）
+
+Route::post('/contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
+
+Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');  // データ保存（POST）
+
+Route::get('/contacts/complete', [ContactController::class, 'complete'])->name('contacts.complete');  // 完了ページ（GET）
