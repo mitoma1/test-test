@@ -3,6 +3,7 @@
         "enderror",
         "endisset",
         "laravel",
-        "mailhog"
+        "mailhog",
+        "tabindex"
     ]
 }

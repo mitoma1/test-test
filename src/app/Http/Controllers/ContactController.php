@@ -4,97 +4,66 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
-<<<<<<< HEAD
-
-class ContactController extends Controller
-{
-
-    public function index(Request $request)
-    {
-        return view('index', ['oldData' => $request->all()]);
-    }
-
-    public function confirm(Request $request)
-    {
-        $validated = $request->validate([
-            'last_name' => 'required',
-            'first_name' => 'required',
-            'gender' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required|numeric|digits_between:5,15',
-            'address' => 'required',
-            'category' => 'required',
-            'message' => 'required|max:120',
-        ]);
-
-        return view('confirm', ['data' => $validated]);
-    }
-
-    public function store(Request $request)
-    {
-        Contact::create($request->all());
-        return redirect()->route('contact.thanks');
-    }
-
-    public function thanks()
-    {
-        return view('thanks');
-    }
-=======
 use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
+  // お問い合わせフォームページの表示
   public function index()
   {
     return view('index');
   }
 
+  // お問い合わせフォームの表示
   public function showForm()
   {
-    return view('contacts.form'); // フォームページのビューを正しく指定
+    return view('contacts.form');
   }
 
+  // お問い合わせ内容の確認
   public function confirm(Request $request)
   {
+    // 入力されたデータを取得
     $contact = $request->only(['name', 'company', 'email', 'tel', 'content']);
+
+    // 確認ページにデータを渡して表示
     return view('contacts.confirm', compact('contact'));
   }
+
+  // お問い合わせデータの保存
   public function store(ContactRequest $request)
   {
+    // バリデーション済みデータを取得
     $validatedData = $request->validated();
 
-    // データを保存
+    // データを配列で作成
     $contact = [
       'name' => $validatedData['last_name'] . ' ' . $validatedData['first_name'],
-      'company' => $validatedData['company'] ?? '', // 会社名を追加
+      'company' => $validatedData['company'] ?? '', // 会社名があれば保存
       'email' => $validatedData['email'],
       'tel' => $validatedData['tel'],
       'content' => $validatedData['content'],
     ];
 
-    // データ保存
+    // データをデータベースに保存
     Contact::create($contact);
 
-    // セッションにデータを保存
-    session(['contact' => $contact]);
-
     // 完了ページにリダイレクト
-    return redirect()->route('contacts.complete');
+    return redirect()->route('contacts.complete')->with('contact', $contact);
   }
 
+  // 完了ページの表示
   public function complete()
   {
-    // セッションから contact データを取得
-    $contact = session('contact', null);
+    // セッションから保存したデータを取得
+    $contact = session('contact');
 
-    // セッションが空なら、フォームにリダイレクト
-    if (is_null($contact)) {
+    // セッションがない場合はフォームにリダイレクト
+    if (!$contact) {
       return redirect()->route('contacts.form')->withErrors(['error' => 'セッションが切れました。最初からやり直してください。']);
     }
 
     // 完了ページにデータを渡して表示
     return view('contacts.complete', compact('contact'));
   }
->>>>>>> a6eab46c3a2501eaeeadcf98623c369db7079aa3
 }
