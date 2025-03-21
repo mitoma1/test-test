@@ -1,0 +1,161 @@
+/* ベースのリセット */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
+    color: #333;
+    padding: 20px;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* フォーム全体のデザイン */
+  .contact-form {
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* 見出し */
+  .contact-form__heading {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #333;
+  }
+  
+  /* フォーム項目ラベル */
+  .form__label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  /* 必須項目ラベル */
+  .form__label--required::after {
+    content: " *";
+    color: red;
+  }
+  
+  /* 入力欄のデザイン */
+  .form__input input,
+  .form__input textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  /* 入力欄にフォーカス時 */
+  .form__input input:focus,
+  .form__input textarea:focus {
+    border-color: #4caf50;
+    outline: none;
+  }
+  
+  /* テキストエリア */
+  .form__input--textarea textarea {
+    height: 150px;
+    resize: vertical;
+  }
+  
+  /* エラーメッセージ */
+  .form__error {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+  }
+  
+  /* セレクトボックス */
+  .form__select select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  
+  /* ラジオボタン（性別選択ボタン） */
+  .form__gender {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .form__gender div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* ラジオボタン非表示 */
+  .form__gender input[type="radio"] {
+    display: none;
+  }
+  
+  /* ⚪︎アイコン表示 */
+  .form__gender label {
+    font-size: 22px;
+    cursor: pointer;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+  }
+  
+  /* ⚪︎アイコン（未選択） */
+  .form__gender label::before {
+    content: "⚪︎"; /* 未選択時の丸 */
+  }
+  
+  /* ボタン選択時のスタイル */
+  .form__gender input[type="radio"]:checked + label {
+    color: #4caf50;
+  }
+  
+  /* 選択時に⚪︎を⚫︎に変更 */
+  .form__gender input[type="radio"]:checked + label::before {
+    content: "⚫︎"; /* 選択時は黒丸 */
+  }
+  
+  /* ボタンホバー時のスタイル */
+  .form__gender label:hover {
+    color: #4caf50;
+  }
+  
+  /* フォーム送信ボタン */
+  .form__button-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form__button-submit:hover {
+    background-color: #45a049;
+  }
+  
+  
+  
+  
+  

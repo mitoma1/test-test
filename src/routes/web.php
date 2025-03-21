@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Auth\RegisterController;
 
+use Laravel\Fortify\Fortify;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +19,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+Route::post('/store', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register']);
+
+Fortify::registerView(function () {
+    return view('auth.register');
+});
+
+Fortify::loginView(function () {
+    return view('auth.login');
+});
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 });

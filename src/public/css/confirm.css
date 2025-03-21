@@ -1,0 +1,93 @@
+/* 全体のリセット */
+body, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* 画面全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* コンテナのスタイル */
+.confirm-container {
+    background-color: white;
+    padding: 30px;
+    max-width: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* タイトルのスタイル */
+.confirm-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* テーブルのスタイル */
+.confirm-table {
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+}
+
+.confirm-table th, .confirm-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.confirm-table th {
+    background-color: #f8f9fa;
+    width: 25%;
+}
+
+/* ボタンのスタイル */
+.button-group {
+    margin-top: 20px;
+    display: flex;  /* 横並びにする */
+    justify-content: center; /* 中央揃え */
+    gap: 20px; /* ボタンの間隔を設定 */
+}
+* フォームをインラインブロックに */
+.button-group form {
+    display: inline-block;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.button-back {
+    background-color: #007bff;
+}
+
+.button-back:hover {
+    background-color: #0056b3;
+}
+
+.button-submit {
+    background-color: #28a745;
+}
+
+.button-submit:hover {
+    background-color: #218838;
+}
+
+
