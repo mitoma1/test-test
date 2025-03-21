@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ベースのリセット */
 * {
     margin: 0;
@@ -159,3 +160,163 @@
   
   
   
+=======
+.header {
+    background: #000;
+  }
+  
+  .header__inner {
+    margin: 0 auto;
+    padding: 20px 15px;
+    max-width: 1230px;
+  }
+  
+  .header__logo {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  
+  .contact-form__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+  }
+  
+  .contact-form__heading {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .form {
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+  }
+  
+  .form__group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  .form__label--required {
+    margin-left: 5px;
+    padding: 4px 6px;
+    border-radius: 3px;
+    background: #fafafa;
+    color: #aaa;
+  }
+  
+  .form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+  }
+  
+  .form__input--text input,
+  .form__input--textarea textarea {
+    padding: 10px;
+    width: 600px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  
+    appearance: none;
+  }
+  
+  .form__input--text input {
+    height: 40px;
+  }
+  
+  .form__input--textarea textarea {
+    height: 180px;
+  }
+  
+  .form__button {
+    margin-top: 30px;
+  }
+  
+  .form__button-submit {
+    padding: 10px;
+    width: 30%;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+  .confirm-table__text input {
+    display: inline-block;
+    width: 48%;
+    margin-right: 4%;
+  }
+  
+  .confirm-table__text input:last-child {
+    margin-right: 0;
+  }
+  .form__group-content  {
+    flex-direction: column; 
+    gap: 10px; /* 姓と名の間隔を設定 */
+    
+  width: 100%; /* 親要素の幅いっぱいに */
+  }
+  .form__name-group {
+    display: flex;
+    gap: 10px; /* 姓と名の間隔を調整 */
+    width: 100%;
+  }
+  .form__name-group input {
+    width: 50%; /* 2つの入力欄を均等に並べる */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    appearance: none;
+  }
+  .form__group-content  input {
+    width: 48%; /* 両方がほぼ半分の幅になるよう調整 */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    appearance: none;
+  }
+  .form__input--text input[type="email"],
+.form__input--text input[type="tel"] {
+    width: 100%; /* 幅を最大にする */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    appearance: none;
+    max-width: 600px; 
+}
+.confirm-table__text input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  appearance: none;
+}
+.form__group-title {
+  display: flex;
+  align-items: center;
+  flex: none; /* ラベルの幅を固定し、改行を防ぐ */
+  min-width: 120px; /* 会社名などのラベルが適切に表示されるように調整 */
+}
+.form__label--item {
+  white-space: nowrap;
+}
+.form__group-content {
+  flex-grow: 1; /* 入力フィールドが適切に伸縮するように */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 間隔を統一 */
+  width: 100%;
+}
+.form__group-content input {
+  width: 100%; /* 入力欄を最大幅に */
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+>>>>>>> a6eab46c3a2501eaeeadcf98623c369db7079aa3

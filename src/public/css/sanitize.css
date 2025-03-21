@@ -306,6 +306,10 @@ button,
 [type="reset"],
 [type="submit"] {
   -webkit-appearance: button;
+<<<<<<< HEAD
+=======
+  appearance: button;
+>>>>>>> a6eab46c3a2501eaeeadcf98623c369db7079aa3
 }
 
 /**
@@ -398,6 +402,10 @@ textarea {
   /* 2 */
 
   -webkit-appearance: textfield;
+<<<<<<< HEAD
+=======
+  appearance: textfield;
+>>>>>>> a6eab46c3a2501eaeeadcf98623c369db7079aa3
   /* 1 */
 }
 
