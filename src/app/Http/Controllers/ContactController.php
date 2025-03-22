@@ -47,6 +47,7 @@ class ContactController extends Controller
 
     // データをデータベースに保存
     Contact::create($contact);
+    session(['contact' => $contact]);
 
     // 完了ページにリダイレクト
     return redirect()->route('contacts.complete')->with('contact', $contact);
