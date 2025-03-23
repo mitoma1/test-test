@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCompanyToContactsTable extends Migration
+class AddCompanyColumnToContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,10 @@ class AddCompanyToContactsTable extends Migration
     public function up()
     {
         Schema::table('contacts', function (Blueprint $table) {
-            $table->string('company')->nullable();
+            // 'company' カラムが存在しない場合に追加
+            if (!Schema::hasColumn('contacts', 'company')) {
+                $table->string('company')->nullable()->after('first_name');
+            }
         });
     }
 
@@ -26,7 +29,7 @@ class AddCompanyToContactsTable extends Migration
     public function down()
     {
         Schema::table('contacts', function (Blueprint $table) {
-            $table->dropColumn('company');
+            //
         });
     }
 }
