@@ -10,63 +10,74 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 </head>
 
-@extends('layouts.app')
+<body>
+    <div class="container">
+        <div class="contact-form">
+            <h2 class="contact-form__heading">お問い合わせ内容の確認</h2>
 
-@section('content')
-<div class="container">
-    <h2 class="heading">お問い合わせ内容の確認</h2>
+            <form action="{{ route('contact.store') }}" method="POST">
+                @csrf
+                <div class="form__group">
+                    <label class="form__label">お名前</label>
+                    <p class="form__value">{{ session('last_name') }} {{ session('first_name') }}</p>
+                    <input type="hidden" name="last_name" value="{{ session('last_name') }}">
+                    <input type="hidden" name="first_name" value="{{ session('first_name') }}">
+                </div>
 
-    <table class="confirm-table">
-        <tr>
-            <th>お名前</th>
-            <td>{{ $data['last_name'] }} {{ $data['first_name'] }}</td>
-        </tr>
-        <tr>
-            <th>性別</th>
-            <td>
-                @if ($data['gender'] === 'male') 男性
-                @elseif ($data['gender'] === 'female') 女性
-                @else その他
-                @endif
-            </td>
-        </tr>
-        <tr>
-            <th>メールアドレス</th>
-            <td>{{ $data['email'] }}</td>
-        </tr>
-        <tr>
-            <th>電話番号</th>
-            <td>{{ $data['phone'] }}</td>
-        </tr>
-        <tr>
-            <th>住所</th>
-            <td>{{ $data['address'] }} {{ $data['building'] ?? '' }}</td>
-        </tr>
-        <tr>
-            <th>お問い合わせの種類</th>
-            <td>{{ $data['category'] }}</td>
-        </tr>
-        <tr>
-            <th>お問い合わせ内容</th>
-            <td>{{ $data['message'] }}</td>
-        </tr>
-    </table>
+                <div class="form__group">
+                    <label class="form__label">性別</label>
+                    <p class="form__value">
+                        @if (session('gender') == 'male') 男性
+                        @elseif (session('gender') == 'female') 女性
+                        @else その他
+                        @endif
+                    </p>
+                    <input type="hidden" name="gender" value="{{ session('gender') }}">
+                </div>
 
-    <div class="button-group">
-        <a href="{{ route('contact.index') }}" class="button button-back">修正する</a>
-        <form action="{{ route('contact.store') }}" method="POST">
-            @csrf
-            <input type="hidden" name="last_name" value="{{ $data['last_name'] }}">
-            <input type="hidden" name="first_name" value="{{ $data['first_name'] }}">
-            <input type="hidden" name="gender" value="{{ $data['gender'] }}">
-            <input type="hidden" name="email" value="{{ $data['email'] }}">
-            <input type="hidden" name="phone" value="{{ $data['phone'] }}">
-            <input type="hidden" name="address" value="{{ $data['address'] }}">
-            <input type="hidden" name="building" value="{{ $data['building'] ?? '' }}">
-            <input type="hidden" name="category" value="{{ $data['category'] }}">
-            <input type="hidden" name="message" value="{{ $data['message'] }}">
-            <button type="submit" class="button button-submit">送信する</button>
-        </form>
+                <div class="form__group">
+                    <label class="form__label">メールアドレス</label>
+                    <p class="form__value">{{ session('email') }}</p>
+                    <input type="hidden" name="email" value="{{ session('email') }}">
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label">電話番号</label>
+                    <p class="form__value">{{ session('phone') }}</p>
+                    <input type="hidden" name="phone" value="{{ session('phone') }}">
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label">住所</label>
+                    <p class="form__value">{{ session('address') }}</p>
+                    <input type="hidden" name="address" value="{{ session('address') }}">
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label">建物名</label>
+                    <p class="form__value">{{ session('building') }}</p>
+                    <input type="hidden" name="building" value="{{ session('building') }}">
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label">お問い合わせの種類</label>
+                    <p class="form__value">{{ session('category') }}</p>
+                    <input type="hidden" name="category" value="{{ session('category') }}">
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label">お問い合わせ内容</label>
+                    <p class="form__value">{{ session('message') }}</p>
+                    <input type="hidden" name="message" value="{{ session('message') }}">
+                </div>
+
+                <div class="form__buttons">
+                    <a href="{{ route('contact.form') }}" class="form__button">修正</a>
+                    <button type="submit" class="form__button">送信</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-@endsection
+</body>
+
+</html>

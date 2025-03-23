@@ -43,7 +43,14 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // お問い合わせフォーム（別名）
-Route::get('/contacts', [ContactController::class, 'showForm'])->name('contacts.form');  // フォーム表示（GET）
-Route::post('/contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
-Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');  // データ保存（POST）
-Route::get('/contacts/complete', [ContactController::class, 'complete'])->name('contacts.complete');  // 完了ページ（GET）
+// フォーム表示（GET）
+Route::get('/contacts', [ContactController::class, 'showForm'])->name('contacts.form');
+
+// 確認画面表示（GET）
+Route::get('/contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
+
+// 確認画面からのデータ保存（POST）
+Route::post('/contacts/confirm', [ContactController::class, 'store'])->name('contacts.store');
+
+// 完了ページ表示（GET）
+Route::get('/contacts/complete', [ContactController::class, 'complete'])->name('contacts.complete');

@@ -25,17 +25,18 @@
                 <h2>お問い合わせ内容確認</h2>
             </div>
 
-            <form class="form" action="{{ route('contacts.store') }}" method="POST">
+            <form class="form" action="{{ route('contacts.confirm') }}" method="POST">
                 @csrf
-
                 <div class="confirm-table">
                     <table class="confirm-table__inner">
                         <tr class="confirm-table__row">
-                            <th class="confirm-table__header">お名前</th>
+                            <th class="confirm-table__header">性別</th>
                             <td class="confirm-table__text">
-                                {{ $data['last_name'] ?? '' }} {{ $data['first_name'] ?? '' }}
-                                <input type="hidden" name="last_name" value="{{ $data['last_name'] ?? '' }}">
-                                <input type="hidden" name="first_name" value="{{ $data['first_name'] ?? '' }}">
+                                @if ($data['gender'] == 'male') 男性
+                                @elseif ($data['gender'] == 'female') 女性
+                                @else その他
+                                @endif
+                                <input type="hidden" name="gender" value="{{ $data['gender'] ?? '' }}">
                             </td>
                         </tr>
                         <tr class="confirm-table__row">

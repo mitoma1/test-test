@@ -53,16 +53,44 @@ body {
     width: 25%;
 }
 
-/* ボタンのスタイル */
-.button-group {
+/* ボタンのグループ */
+.form__buttons {
     margin-top: 20px;
-    display: flex;  /* 横並びにする */
-    justify-content: center; /* 中央揃え */
-    gap: 20px; /* ボタンの間隔を設定 */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
-* フォームをインラインブロックに */
-.button-group form {
-    display: inline-block;
+
+/* 修正ボタン */
+.form__button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.form__button:hover {
+    opacity: 0.8;
+}
+
+/* 修正ボタン */
+.form__button[href^="http"] {
+    background-color: #007bff;
+}
+
+.form__button[href^="http"]:hover {
+    background-color: #0056b3;
+}
+
+/* 送信ボタン */
+.form__button[type="submit"] {
+    background-color: #28a745;
+}
+
+.form__button[type="submit"]:hover {
+    background-color: #218838;
 }
 
 .button {
