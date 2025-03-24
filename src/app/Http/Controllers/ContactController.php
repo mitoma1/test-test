@@ -37,7 +37,7 @@ class ContactController extends Controller
   public function confirmPost(Request $request)
   {
     // ここで送信されたデータを保存する処理を追加
-    return redirect()->route('contact.store');
+    return redirect()->route('contact.confirm'); // Ensure the route name matches the confirm method
   }
 
   // データ保存（POSTリクエスト）

@@ -1,111 +1,112 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Form</title>
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
-</head>
+@section('content')
+<div class="container">
+  <h2 class="text-center my-4">Contact</h2>
 
-<body>
-  <div class="container">
-    <div class="contact-form">
-      <h2 class="contact-form__heading">お問い合わせフォーム</h2>
+  <form action="{{ route('contact.confirm') }}" method="POST">
+    @csrf
+    <table class="table">
+      <tbody>
+        <!-- お名前 -->
+        <tr>
+          <th class="bg-light">お名前 <span class="text-danger">※</span></th>
+          <td>
+            <div class="d-flex">
+              <input type="text" name="last_name" class="form-control me-2" placeholder="例: 山田" value="{{ old('last_name') }}">
+              <input type="text" name="first_name" class="form-control" placeholder="例: 太郎" value="{{ old('first_name') }}">
+            </div>
+            @error('last_name') <p class="text-danger">{{ $message }}</p> @enderror
+            @error('first_name') <p class="text-danger">{{ $message }}</p> @enderror
+          </td>
+        </tr>
 
-      <!-- フォームの開始 -->
-      <form action="{{ route('contact.confirm') }}" method="POST">
-        @csrf
-        <div class="form__name">
-          <div>
-            <label for="last_name" class="form__label form__label--required">お名前（姓） *</label>
-            <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}">
-            @error('last_name')
-            <span class="form__error">{{ $message }}</span>
-            @enderror
-          </div>
+        <!-- 性別 -->
+        <tr>
+          <th class="bg-light">性別 <span class="text-danger">※</span></th>
+          <td>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" value="male" {{ old('gender', 'male') == 'male' ? 'checked' : '' }}>
+              <label class="form-check-label">男性</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}>
+              <label class="form-check-label">女性</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="gender" value="other" {{ old('gender') == 'other' ? 'checked' : '' }}>
+              <label class="form-check-label">その他</label>
+            </div>
+            @error('gender') <p class="text-danger">{{ $message }}</p> @enderror
+          </td>
+        </tr>
 
-          <div>
-            <label for="first_name" class="form__label form__label--required">お名前（名） *</label>
-            <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}">
-            @error('first_name')
-            <span class="form__error">{{ $message }}</span>
-            @enderror
-          </div>
+        <!-- メールアドレス -->
+        <tr>
+          <th class="bg-light">メールアドレス <span class="text-danger">※</span></th>
+          <td>
+            <input type="email" name="email" class="form-control" placeholder="例: test@example.com" value="{{ old('email') }}">
+            @error('email') <p class="text-danger">{{ $message }}</p> @enderror
+          </td>
+        </tr>
 
-          <!-- 性別選択 -->
-          <div>
-            <input type="radio" id="male" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}>
-            <label for="male">男性</label>
-          </div>
-          <div>
-            <input type="radio" id="female" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}>
-            <label for="female">女性</label>
-          </div>
-          <div>
-            <input type="radio" id="other" name="gender" value="other" {{ old('gender') == 'other' ? 'checked' : '' }}>
-            <label for="other">その他</label>
-          </div>
+        <!-- 電話番号 -->
+        <tr>
+          <th class="bg-light">電話番号 <span class="text-danger">※</span></th>
+          <td>
+            <input type="text" name="phone" class="form-control" placeholder="例: 08012345678" value="{{ old('phone') }}">
+            @error('phone') <p class="text-danger">{{ $message }}</p> @enderror
+          </td>
+        </tr>
 
-          <div>
-            <label for="email" class="form__label">メールアドレス *</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}">
-            @error('email')
-            <span class="error">{{ $message }}</span>
-            @enderror
-          </div>
+        <!-- 住所 -->
+        <tr>
+          <th class="bg-light">住所 <span class="text-danger">※</span></th>
+          <td>
+            <input type="text" name="address" class="form-control" placeholder="例: 東京都渋谷区千駄ヶ谷1-2-3" value="{{ old('address') }}">
+            @error('address') <p class="text-danger">{{ $message }}</p> @enderror
+          </td>
+        </tr>
 
-          <div>
-            <label for="phone" class="form__label">電話番号 *</label>
-            <input type="text" id="phone" name="phone" value="{{ old('phone') }}">
-            @error('phone')
-            <span class="error">{{ $message }}</span>
-            @enderror
-          </div>
+        <!-- 建物名 -->
+        <tr>
+          <th class="bg-light">建物名</th>
+          <td>
+            <input type="text" name="building" class="form-control" placeholder="例: 千駄ヶ谷マンション101" value="{{ old('building') }}">
+          </td>
+        </tr>
 
-          <div>
-            <label for="address" class="form__label">住所 *</label>
-            <input type="text" id="address" name="address" value="{{ old('address') }}">
-            @error('address')
-            <span class="error">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <div>
-            <label for="building" class="form__label">建物名</label>
-            <input type="text" id="building" name="building" value="{{ old('building') }}">
-            @error('building')
-            <span class="error">{{ $message }}</span>
-            @enderror
-          </div>
-
-          <div>
-            <label for="category" class="form__label">お問い合わせの種類 *</label>
-            <select id="category" name="category">
-              <option value="">選択してください</option>
-              <option value="商品のお届けについて" {{ old('category') == '商品のお届けについて' ? 'selected' : '' }}>商品のお届けについて</option>
-              <option value="商品交換について" {{ old('category') == '商品交換について' ? 'selected' : '' }}>商品交換について</option>
-              <option value="商品トラブル" {{ old('category') == '商品トラブル' ? 'selected' : '' }}>商品トラブル</option>
-              <option value="ショップへのお問い合わせ" {{ old('category') == 'ショップへのお問い合わせ' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
-              <option value="その他" {{ old('category') == 'その他' ? 'selected' : '' }}>その他</option>
+        <!-- お問い合わせの種類 -->
+        <tr>
+          <th class="bg-light">お問い合わせの種類 <span class="text-danger">※</span></th>
+          <td>
+            <select name="category" class="form-control">
+              <option value="" selected>選択してください</option>
+              <option value="1" {{ old('category') == '1' ? 'selected' : '' }}>商品のお届けについて</option>
+              <option value="2" {{ old('category') == '2' ? 'selected' : '' }}>商品の交換について</option>
+              <option value="3" {{ old('category') == '3' ? 'selected' : '' }}>商品トラブル</option>
+              <option value="4" {{ old('category') == '4' ? 'selected' : '' }}>ショップへのお問い合わせ</option>
+              <option value="5" {{ old('category') == '5' ? 'selected' : '' }}>その他</option>
             </select>
-            @error('category')
-            <span class="error">{{ $message }}</span>
-            @enderror
-          </div>
+            @error('category') <p class="text-danger">{{ $message }}</p> @enderror
+          </td>
+        </tr>
 
-          <!-- お問い合わせ内容 -->
-          <div class="form__group form__input">
-            <label class="form__label" for="message">お問い合わせ内容</label>
-            <textarea id="message" name="message" placeholder="お問い合わせ内容を入力してください">{{ old('message') }}</textarea>
-          </div>
+        <!-- お問い合わせ内容 -->
+        <tr>
+          <th class="bg-light">お問い合わせ内容 <span class="text-danger">※</span></th>
+          <td>
+            <textarea name="message" class="form-control" rows="4" placeholder="お問い合わせ内容をご記載ください">{{ old('message') }}</textarea>
+            @error('message') <p class="text-danger">{{ $message }}</p> @enderror
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-          <button type="submit">確認画面</button>
-      </form>
+    <!-- ボタン -->
+    <div class="text-center mt-3">
+      <button type="submit" class="btn btn-primary">確認画面</button>
     </div>
-  </div>
-</body>
-
-</html>
+  </form>
+</div>
+@endsection
