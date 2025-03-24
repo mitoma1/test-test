@@ -16,9 +16,8 @@
       <h2 class="contact-form__heading">お問い合わせフォーム</h2>
 
       <!-- フォームの開始 -->
-      <form id="contact-form" action="{{ route('contact.confirm') }}" method="POST">
+      <form action="{{ route('contact.confirm') }}" method="POST">
         @csrf
-        <!-- フォーム項目はそのまま -->
         <div class="form__name">
           <div>
             <label for="last_name" class="form__label form__label--required">お名前（姓） *</label>

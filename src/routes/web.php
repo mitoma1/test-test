@@ -19,10 +19,21 @@ use App\Http\Controllers\AdminController;
 
 // お問い合わせフォーム関連
 Route::get('/', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
-Route::post('/store', [ContactController::class, 'store'])->name('contact.store');
-Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 
+// お問い合わせフォームページ表示
+Route::get('/form', [ContactController::class, 'showForm'])->name('contact.form');
+
+// お問い合わせ内容の確認ページ表示（GETリクエスト）
+Route::get('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
+
+// 確認フォーム送信（POSTリクエスト）
+Route::post('/confirm', [ContactController::class, 'confirmPost'])->name('contact.confirm.post');
+
+// データ保存（POSTリクエスト）
+Route::post('/store', [ContactController::class, 'store'])->name('contact.store');
+
+// 完了ページ（サンクスページ）を表示
+Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 // ユーザー認証関連（Fortifyを利用する場合）
 Fortify::registerView(function () {
     return view('auth.register');
@@ -41,16 +52,3 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 });
-
-// お問い合わせフォーム（別名）
-// フォーム表示（GET）
-Route::get('/contacts', [ContactController::class, 'showForm'])->name('contacts.form');
-
-// 確認画面表示（POST）
-Route::post('/contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
-
-// 確認画面からのデータ保存（POST）
-Route::post('/contacts/store', [ContactController::class, 'store'])->name('contacts.store');
-
-// 完了ページ表示（GET）
-Route::get('/contacts/complete', [ContactController::class, 'complete'])->name('contacts.complete');

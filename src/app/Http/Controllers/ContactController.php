@@ -33,34 +33,14 @@ class ContactController extends Controller
     return view('contacts.confirm', compact('validatedData'));
   }
 
-  // 完了ページの表示
-  public function complete()
+  // 確認フォーム送信（POSTリクエスト）
+  public function confirmPost(Request $request)
   {
-    $contactData = session('contact_data');
-
-    // セッションが切れていた場合
-    if (!$contactData) {
-      return redirect()->route('contacts.form')
-        ->withErrors(['error' => 'セッションが切れました。最初からやり直してください。']);
-    }
-
-    // データベースに保存（確認データがある場合）
-    $savedContact = Contact::create([
-      'last_name' => $contactData['last_name'],
-      'first_name' => $contactData['first_name'],
-      'email' => $contactData['email'],
-      'phone' => $contactData['phone'],
-      'address' => $contactData['address'],
-      'building' => $contactData['building'],
-      'category' => $contactData['category'],
-      'message' => $contactData['message'],
-    ]);
-
-    // 完了ページにデータを渡して表示
-    return view('contacts.complete', compact('savedContact'));
+    // ここで送信されたデータを保存する処理を追加
+    return redirect()->route('contact.store');
   }
 
-  // データ保存
+  // データ保存（POSTリクエスト）
   public function store(Request $request)
   {
     // セッションから確認データを取得
@@ -68,7 +48,7 @@ class ContactController extends Controller
 
     // データがない場合はフォームに戻す
     if (!$contactData) {
-      return redirect()->route('contacts.form')
+      return redirect()->route('contact.index')
         ->withErrors(['error' => 'セッションが切れました。最初からやり直してください。']);
     }
 
@@ -87,6 +67,12 @@ class ContactController extends Controller
     // 保存が完了したら完了ページにリダイレクト
     session(['contact_id' => $savedContact->id]);
 
-    return redirect()->route('contacts.complete');
+    return redirect()->route('contact.thanks');
+  }
+
+  // 完了ページ（サンクスページ）を表示
+  public function thanks()
+  {
+    return view('contacts.thanks');
   }
 }
