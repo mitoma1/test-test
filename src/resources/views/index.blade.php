@@ -10,15 +10,15 @@
   <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
 </head>
 
-
 <body>
   <div class="container">
     <div class="contact-form">
       <h2 class="contact-form__heading">お問い合わせフォーム</h2>
 
       <!-- フォームの開始 -->
-      <form action="{{ route('contact.confirm') }}" method="POST">
+      <form id="contact-form" action="{{ route('contact.confirm') }}" method="POST">
         @csrf
+        <!-- フォーム項目はそのまま -->
         <div class="form__name">
           <div>
             <label for="last_name" class="form__label form__label--required">お名前（姓） *</label>
@@ -36,9 +36,7 @@
             @enderror
           </div>
 
-
           <!-- 性別選択 -->
-
           <div>
             <input type="radio" id="male" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : '' }}>
             <label for="male">男性</label>
@@ -51,8 +49,6 @@
             <input type="radio" id="other" name="gender" value="other" {{ old('gender') == 'other' ? 'checked' : '' }}>
             <label for="other">その他</label>
           </div>
-
-
 
           <div>
             <label for="email" class="form__label">メールアドレス *</label>
@@ -107,9 +103,10 @@
             <textarea id="message" name="message" placeholder="お問い合わせ内容を入力してください">{{ old('message') }}</textarea>
           </div>
 
-
           <button type="submit">確認画面</button>
       </form>
     </div>
   </div>
 </body>
+
+</html>

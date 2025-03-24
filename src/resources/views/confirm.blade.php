@@ -15,13 +15,13 @@
         <div class="contact-form">
             <h2 class="contact-form__heading">お問い合わせ内容の確認</h2>
 
-            <form action="{{ route('contact.store') }}" method="POST">
+            <form action="{{ route('contacts.store') }}" method="POST">
                 @csrf
                 <div class="form__group">
                     <label class="form__label">お名前</label>
-                    <p class="form__value">{{ session('last_name') }} {{ session('first_name') }}</p>
-                    <input type="hidden" name="last_name" value="{{ session('last_name') }}">
-                    <input type="hidden" name="first_name" value="{{ session('first_name') }}">
+                    <p class="form__value">{{ session('last_name', '未入力') }} {{ session('first_name', '未入力') }}</p>
+                    <input type="hidden" name="last_name" value="{{ session('last_name', '') }}">
+                    <input type="hidden" name="first_name" value="{{ session('first_name', '') }}">
                 </div>
 
                 <div class="form__group">
@@ -32,43 +32,43 @@
                         @else その他
                         @endif
                     </p>
-                    <input type="hidden" name="gender" value="{{ session('gender') }}">
+                    <input type="hidden" name="gender" value="{{ session('gender', '') }}">
                 </div>
 
                 <div class="form__group">
                     <label class="form__label">メールアドレス</label>
-                    <p class="form__value">{{ session('email') }}</p>
-                    <input type="hidden" name="email" value="{{ session('email') }}">
+                    <p class="form__value">{{ session('email', '未入力') }}</p>
+                    <input type="hidden" name="email" value="{{ session('email', '') }}">
                 </div>
 
                 <div class="form__group">
                     <label class="form__label">電話番号</label>
-                    <p class="form__value">{{ session('phone') }}</p>
-                    <input type="hidden" name="phone" value="{{ session('phone') }}">
+                    <p class="form__value">{{ session('phone', '未入力') }}</p>
+                    <input type="hidden" name="phone" value="{{ session('phone', '') }}">
                 </div>
 
                 <div class="form__group">
                     <label class="form__label">住所</label>
-                    <p class="form__value">{{ session('address') }}</p>
-                    <input type="hidden" name="address" value="{{ session('address') }}">
+                    <p class="form__value">{{ session('address', '未入力') }}</p>
+                    <input type="hidden" name="address" value="{{ session('address', '') }}">
                 </div>
 
                 <div class="form__group">
                     <label class="form__label">建物名</label>
-                    <p class="form__value">{{ session('building') }}</p>
-                    <input type="hidden" name="building" value="{{ session('building') }}">
+                    <p class="form__value">{{ session('building', '未入力') }}</p>
+                    <input type="hidden" name="building" value="{{ session('building', '') }}">
                 </div>
 
                 <div class="form__group">
                     <label class="form__label">お問い合わせの種類</label>
-                    <p class="form__value">{{ session('category') }}</p>
-                    <input type="hidden" name="category" value="{{ session('category') }}">
+                    <p class="form__value">{{ session('category', '未入力') }}</p>
+                    <input type="hidden" name="category" value="{{ session('category', '') }}">
                 </div>
 
                 <div class="form__group">
                     <label class="form__label">お問い合わせ内容</label>
-                    <p class="form__value">{{ session('message') }}</p>
-                    <input type="hidden" name="message" value="{{ session('message') }}">
+                    <p class="form__value">{{ session('message', '未入力') }}</p>
+                    <input type="hidden" name="message" value="{{ session('message', '') }}">
                 </div>
 
                 <div class="form__buttons">

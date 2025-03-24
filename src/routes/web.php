@@ -46,11 +46,11 @@ Route::middleware(['auth'])->group(function () {
 // フォーム表示（GET）
 Route::get('/contacts', [ContactController::class, 'showForm'])->name('contacts.form');
 
-// 確認画面表示（GET）
-Route::get('/contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
+// 確認画面表示（POST）
+Route::post('/contacts/confirm', [ContactController::class, 'confirm'])->name('contacts.confirm');
 
 // 確認画面からのデータ保存（POST）
-Route::post('/contacts/confirm', [ContactController::class, 'store'])->name('contacts.store');
+Route::post('/contacts/store', [ContactController::class, 'store'])->name('contacts.store');
 
 // 完了ページ表示（GET）
 Route::get('/contacts/complete', [ContactController::class, 'complete'])->name('contacts.complete');
