@@ -19,20 +19,8 @@ use App\Http\Controllers\AdminController;
 
 // お問い合わせフォーム関連
 Route::get('/', [ContactController::class, 'index'])->name('contact.index');
-
-// お問い合わせフォームページ表示
-Route::get('/form', [ContactController::class, 'showForm'])->name('contact.form');
-
-// お問い合わせ内容の確認ページ表示（GETリクエスト）
-Route::get('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
-
-// 確認フォーム送信（POSTリクエスト）
-Route::post('/confirm', [ContactController::class, 'confirmPost'])->name('contact.confirm.post');
-
-// データ保存（POSTリクエスト）
+Route::post('/confirm', [ContactController::class, 'confirm'])->name('contact.confirm');
 Route::post('/store', [ContactController::class, 'store'])->name('contact.store');
-
-// 完了ページ（サンクスページ）を表示
 Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 // ユーザー認証関連（Fortifyを利用する場合）
 Fortify::registerView(function () {
